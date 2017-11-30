@@ -1,6 +1,7 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,7 +41,6 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
     private static final String TEST_TEMPERATURE = "testTemperature";
 
     //Constructor
-
     public MyDatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -86,6 +86,17 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
                 TEST_BPL + " TEXT NOT NULL, " +
                 TEST_BPH + " TEXT NOT NULL " +
                 TEST_TEMPERATURE + " INTEGER NOT NULL " + ");";
+        //Store the queries in an array
+        String[] queries = {doctorTableQuery, nurseTableQuery, patientTableQuery, testTableQuery};
+        //Loop through the array to execute each query in the array
+        for(String query : queries){
+            try {
+                sqLiteDatabase.execSQL(query);
+            } catch (SQLException e) {
+                System.out.println(">>>DATABASE EXCEPTION>>> " + e.getMessage() + "\n---FOUND AT>>> " + e.getStackTrace());
+            }
+        }
+
     }
 
     @Override
