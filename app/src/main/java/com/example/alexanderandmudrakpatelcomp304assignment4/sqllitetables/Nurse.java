@@ -1,55 +1,55 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 public class Nurse {
-    private int _nurseID;
-    private String _nurseFirstName;
-    private String _nurseLastName;
-    private String _nurseDepartment;
-    private String _nursePassword;
+    private int nurseID;
+    private String nurseFirstName;
+    private String nurseLastName;
+    private String nurseDepartment;
+    private String nursePassword;
 
     //Constructor
-    public Nurse(String _firstName, String _lastName) {
-        this._nurseFirstName = _firstName;
-        this._nurseLastName = _lastName;
+    public Nurse(String firstName, String lastName) {
+        this.nurseFirstName = firstName;
+        this.nurseLastName = lastName;
     }
     //Getters
-    public int get_nurseID() {
-        return _nurseID;
+    public int getNurseID() {
+        return nurseID;
     }
 
-    public String get_nurseFirstName() {
-        return _nurseFirstName;
+    public String getNurseFirstName() {
+        return nurseFirstName;
     }
 
-    public String get_nurseLastName() {
-        return _nurseLastName;
+    public String getNurseLastName() {
+        return nurseLastName;
     }
 
-    public String get_nurseDepartment() {
-        return _nurseDepartment;
+    public String getNurseDepartment() {
+        return nurseDepartment;
     }
 
-    public String get_nursePassword() {
-        return _nursePassword;
+    public String getNursePassword() {
+        return nursePassword;
     }
     //Setters
-    public void set_nurseID(int _nurseID) {
-        this._nurseID = _nurseID;
+    public void setNurseID(int nurseID) {
+        this.nurseID = nurseID;
     }
 
-    public void set_nurseFirstName(String _nurseFirstName) {
-        this._nurseFirstName = _nurseFirstName;
+    public void setNurseFirstName(String nurseFirstName) {
+        this.nurseFirstName = nurseFirstName;
     }
 
-    public void set_nurseLastName(String _nurseLastName) {
-        this._nurseLastName = _nurseLastName;
+    public void setNurseLastName(String nurseLastName) {
+        this.nurseLastName = nurseLastName;
     }
 
-    public void set_nurseDepartment(String _nurseDepartment) {
-        this._nurseDepartment = _nurseDepartment;
+    public void setNurseDepartment(String nurseDepartment) {
+        this.nurseDepartment = nurseDepartment;
     }
 
-    public void set_nursePassword(String _nursePassword) {
-        this._nursePassword = _nursePassword;
+    public void setNursePassword(String nursePassword) {
+        this.nursePassword = nursePassword;
     }
 }

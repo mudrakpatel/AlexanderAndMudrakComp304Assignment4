@@ -1,66 +1,66 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 public class Test {
-    private int _testID;
-    private int _testPatientID;
-    private int _testNurseID;
-    private boolean _testBPL;
-    private boolean _testBPH;
-    private int _testTemperature;
+    private int testID;
+    private int testPatientID;
+    private int testNurseID;
+    private int testBPL;
+    private int testBPH;
+    private int testTemperature;
 
     //Constructor
 
-    public Test(int _patientID, int _nurseID) {
-        this._testPatientID = _patientID;
-        this._testNurseID = _nurseID;
+    public Test(int patientID, int nurseID) {
+        this.testPatientID = patientID;
+        this.testNurseID = nurseID;
     }
     //Getters
-    public int get_testID() {
-        return _testID;
+    public int getTestID() {
+        return testID;
     }
 
-    public int get_testPatientID() {
-        return _testPatientID;
+    public int getTestPatientID() {
+        return testPatientID;
     }
 
-    public int get_testNurseID() {
-        return _testNurseID;
+    public int getTestNurseID() {
+        return testNurseID;
     }
 
-    public boolean is_testBPL() {
-        return _testBPL;
+    public int getTestBPL() {
+        return testBPL;
     }
 
-    public boolean is_testBPH() {
-        return _testBPH;
+    public int getTestBPH() {
+        return testBPH;
     }
 
-    public int get_testTemperature() {
-        return _testTemperature;
+    public int getTestTemperature() {
+        return testTemperature;
     }
 
     //Setters
-    public void set_testID(int _testID) {
-        this._testID = _testID;
+    public void setTestID(int testID) {
+        this.testID = testID;
     }
 
-    public void set_testPatientID(int _testPatientID) {
-        this._testPatientID = _testPatientID;
+    public void setTestPatientID(int testPatientID) {
+        this.testPatientID = testPatientID;
     }
 
-    public void set_testNurseID(int _testNurseID) {
-        this._testNurseID = _testNurseID;
+    public void setTestNurseID(int testNurseID) {
+        this.testNurseID = testNurseID;
     }
 
-    public void set_testBPL(boolean _testBPL) {
-        this._testBPL = _testBPL;
+    public void setTestBPL(int testBPL) {
+        this.testBPL = testBPL;
     }
 
-    public void set_testBPH(boolean _testBPH) {
-        this._testBPH = _testBPH;
+    public void setTestBPH(int testBPH) {
+        this.testBPH = testBPH;
     }
 
-    public void set_testTemperature(int _testTemperature) {
-        this._testTemperature = _testTemperature;
+    public void setTestTemperature(int testTemperature) {
+        this.testTemperature = testTemperature;
     }
 }

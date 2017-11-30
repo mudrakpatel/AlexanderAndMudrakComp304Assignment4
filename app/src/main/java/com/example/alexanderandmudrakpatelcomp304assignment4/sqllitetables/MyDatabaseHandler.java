@@ -10,34 +10,34 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "HospitalDatabase.db";
     //Variables for Doctor table
     private static final String TABLE_DOCTOR = "Doctor";
-    private static final String DOCTOR_ID = "_doctorID";
-    private static final String DOCTOR_FIRSTNAME = "_doctorFirstName";
-    private static final String DOCTOR_LASTNAME = "_doctorLastName";
-    private static final String DOCTOR_DEPARTMENT = "_doctorDepartment";
-    private static final String DOCTOR_PASSWORD = "_doctorPassword";
+    private static final String DOCTOR_ID = "doctorID";
+    private static final String DOCTOR_FIRSTNAME = "doctorFirstName";
+    private static final String DOCTOR_LASTNAME = "doctorLastName";
+    private static final String DOCTOR_DEPARTMENT = "doctorDepartment";
+    private static final String DOCTOR_PASSWORD = "doctorPassword";
     //Variables for Nurse table
     private static final String TABLE_NURSE = "Nurse";
-    private static final String NURSE_ID = "_nurseID";
-    private static final String NURSE_FIRSTNAME = "_nurseFirstName";
-    private static final String NURSE_LASTNAME = "_nurseLastName";
-    private static final String NURSE_DEPARTMENT = "_nurseDepartment";
-    private static final String NURSE_PASSWORD = "_nursePassword";
+    private static final String NURSE_ID = "nurseID";
+    private static final String NURSE_FIRSTNAME = "nurseFirstName";
+    private static final String NURSE_LASTNAME = "nurseLastName";
+    private static final String NURSE_DEPARTMENT = "nurseDepartment";
+    private static final String NURSE_PASSWORD = "nursePassword";
     //Variables for Patient table
     private static final String TABLE_PATIENT = "Patient";
-    private static final String PATIENT_ID = "_patientID";
-    private static final String PATIENT_FIRSTNAME = "_patientFirstName";
-    private static final String PATIENT_LASTNAME = "_patientLastName";
-    private static final String PATIENT_DEPARTMENT = "_patientDepartment";
-    private static final String PATIENT_DOCTOR_ID = "_patientDoctorID";
-    private static final String PATIENT_ROOM = "_patientRoom";
+    private static final String PATIENT_ID = "patientID";
+    private static final String PATIENT_FIRSTNAME = "patientFirstName";
+    private static final String PATIENT_LASTNAME = "patientLastName";
+    private static final String PATIENT_DEPARTMENT = "patientDepartment";
+    private static final String PATIENT_DOCTOR_ID = "patientDoctorID";
+    private static final String PATIENT_ROOM = "patientRoom";
     //Variables for Test table
     private static final String TABLE_TEST = "Test";
-    private static final String TEST_ID = "_testID";
-    private static final String TEST_PATIENT_ID = "_testPatientID";
-    private static final String TEST_NURSE_ID = "_testNurseID";
-    private static final String TEST_BPL = "_testBPL";
-    private static final String TEST_BPH = "_testBPH";
-    private static final String TEST_TEMPERATURE = "_testTemperature";
+    private static final String TEST_ID = "testID";
+    private static final String TEST_PATIENT_ID = "testPatientID";
+    private static final String TEST_NURSE_ID = "testNurseID";
+    private static final String TEST_BPL = "testBPL";
+    private static final String TEST_BPH = "testBPH";
+    private static final String TEST_TEMPERATURE = "testTemperature";
 
     //Constructor
 

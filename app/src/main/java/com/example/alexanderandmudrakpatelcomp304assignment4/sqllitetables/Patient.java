@@ -1,66 +1,66 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 public class Patient {
-    private int _patientID;
-    private String _patientFirstName;
-    private String _patientLastName;
-    private String _patientDepartment;
-    private int _patientDoctorID;
-    private String _patientRoom;
+    private int patientID;
+    private String patientFirstName;
+    private String patientLastName;
+    private String patientDepartment;
+    private int patientDoctorID;
+    private String patientRoom;
 
     //Constructor
-    public Patient(String _firstName, String _lastName) {
-        this._patientFirstName = _firstName;
-        this._patientLastName = _lastName;
+    public Patient(String firstName, String lastName) {
+        this.patientFirstName = firstName;
+        this.patientLastName = lastName;
     }
     //Getters
 
-    public int get_patientID() {
-        return _patientID;
+    public int getPatientID() {
+        return patientID;
     }
 
-    public String get_patientFirstName() {
-        return _patientFirstName;
+    public String getPatientFirstName() {
+        return patientFirstName;
     }
 
-    public String get_patientLastName() {
-        return _patientLastName;
+    public String getPatientLastName() {
+        return patientLastName;
     }
 
-    public String get_patientDepartment() {
-        return _patientDepartment;
+    public String getPatientDepartment() {
+        return patientDepartment;
     }
 
-    public int get_patientDoctorID() {
-        return _patientDoctorID;
+    public int getPatientDoctorID() {
+        return patientDoctorID;
     }
 
-    public String get_patientRoom() {
-        return _patientRoom;
+    public String getPatientRoom() {
+        return patientRoom;
     }
     //Setters
 
-    public void set_patientID(int _patientID) {
-        this._patientID = _patientID;
+    public void setPatientID(int patientID) {
+        this.patientID = patientID;
     }
 
-    public void set_patientFirstName(String _patientFirstName) {
-        this._patientFirstName = _patientFirstName;
+    public void setPatientFirstName(String patientFirstName) {
+        this.patientFirstName = patientFirstName;
     }
 
-    public void set_patientLastName(String _patientLastName) {
-        this._patientLastName = _patientLastName;
+    public void setPatientLastName(String patientLastName) {
+        this.patientLastName = patientLastName;
     }
 
-    public void set_patientDepartment(String _patientDepartment) {
-        this._patientDepartment = _patientDepartment;
+    public void setPatientDepartment(String patientDepartment) {
+        this.patientDepartment = patientDepartment;
     }
 
-    public void set_patientDoctorID(int _patientDoctorID) {
-        this._patientDoctorID = _patientDoctorID;
+    public void setPatientDoctorID(int patientDoctorID) {
+        this.patientDoctorID = patientDoctorID;
     }
 
-    public void set_patientRoom(String _patientRoom) {
-        this._patientRoom = _patientRoom;
+    public void setPatientRoom(String patientRoom) {
+        this.patientRoom = patientRoom;
     }
 }

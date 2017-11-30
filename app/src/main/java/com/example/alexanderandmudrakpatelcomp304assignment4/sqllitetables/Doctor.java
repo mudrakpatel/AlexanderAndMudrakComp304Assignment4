@@ -1,55 +1,55 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 public class Doctor {
-    private int _doctorID;
-    private String _doctorFirstName;
-    private String _doctorLastName;
-    private String _doctorDepartment;
-    private String _doctorPassword;
+    private int doctorID;
+    private String doctorFirstName;
+    private String doctorLastName;
+    private String doctorDepartment;
+    private String doctorPassword;
 
     //Constructor
-    public Doctor(String _firstName, String _lastName) {
-        this._doctorFirstName = _firstName;
-        this._doctorLastName = _lastName;
+    public Doctor(String firstName, String lastName) {
+        this.doctorFirstName = firstName;
+        this.doctorLastName = lastName;
     }
     //Getters
-    public int get_doctorID() {
-        return _doctorID;
+    public int getDoctorID() {
+        return doctorID;
     }
 
-    public String get_doctorFirstName() {
-        return _doctorFirstName;
+    public String getDoctorFirstName() {
+        return doctorFirstName;
     }
 
-    public String get_doctorLastName() {
-        return _doctorLastName;
+    public String getDoctorLastName() {
+        return doctorLastName;
     }
 
-    public String get_doctorDepartment() {
-        return _doctorDepartment;
+    public String getDoctorDepartment() {
+        return doctorDepartment;
     }
 
-    public String get_doctorPassword() {
-        return _doctorPassword;
+    public String getDoctorPassword() {
+        return doctorPassword;
     }
     //Setters
-    public void set_doctorID(int _doctorID) {
-        this._doctorID = _doctorID;
+    public void setDoctorID(int doctorID) {
+        this.doctorID = doctorID;
     }
 
-    public void set_doctorFirstName(String _doctorFirstName) {
-        this._doctorFirstName = _doctorFirstName;
+    public void setDoctorFirstName(String doctorFirstName) {
+        this.doctorFirstName = doctorFirstName;
     }
 
-    public void set_doctorLastName(String _doctorLastName) {
-        this._doctorLastName = _doctorLastName;
+    public void setDoctorLastName(String doctorLastName) {
+        this.doctorLastName = doctorLastName;
     }
 
-    public void set_doctorDepartment(String _doctorDepartment) {
-        this._doctorDepartment = _doctorDepartment;
+    public void setDoctorDepartment(String doctorDepartment) {
+        this.doctorDepartment = doctorDepartment;
     }
 
-    public void set_doctorPassword(String _doctorPassword) {
-        this._doctorPassword = _doctorPassword;
+    public void setDoctorPassword(String doctorPassword) {
+        this.doctorPassword = doctorPassword;
     }
 }
