@@ -19,11 +19,44 @@
         android:layout_below="@+id/editTextUserName"
         android:inputType="textPassword"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/roleSelectorHeadingMainActivity"
+        android:text="@string/roleSelectorHeadingText"
+        android:textSize="@dimen/textSize22dp"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_centerHorizontal="true"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/roleSelectorRadioGroupMainActivity"
+        android:layout_below="@+id/roleSelectorHeadingMainActivity"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nurseRoleRadioButtonMainActivity"
+            android:text="@string/nurseString"
+            android:textSize="@dimen/textSize25dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doctorRoleRadioButtonMainActivity"
+            android:text="@string/doctorString"
+            android:textSize="@dimen/textSize25dp" />
+
+    </RadioGroup>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loginButtonText"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editTextPassword"/>
+        android:layout_below="@+id/roleSelectorRadioGroupMainActivity"/>
 
 </RelativeLayout>

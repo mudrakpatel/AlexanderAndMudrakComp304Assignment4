@@ -3,4 +3,7 @@
     <string name="idText">ID</string>
     <string name="passwordText">password</string>
     <string name="loginButtonText">Login</string>
+    <string name="nurseString">Nurse</string>
+    <string name="doctorString">Doctor</string>
+    <string name="roleSelectorHeadingText">Log in as:</string>
 </resources>
