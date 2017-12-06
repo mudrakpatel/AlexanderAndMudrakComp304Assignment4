@@ -60,4 +60,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/roleSelectorRadioGroupMainActivity"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addUserButtonMainActivity"
+        android:text="@string/addNewUserString"
+        android:layout_below="@+id/loginButtonMainActivity"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

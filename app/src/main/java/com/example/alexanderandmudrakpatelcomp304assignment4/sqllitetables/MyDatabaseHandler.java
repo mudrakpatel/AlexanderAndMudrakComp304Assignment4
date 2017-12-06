@@ -1,6 +1,8 @@
 package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -99,8 +101,28 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public void addNewNurse(Nurse nurse){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NURSE_FIRSTNAME, nurse.getNurseFirstName());
+        contentValues.put(NURSE_LASTNAME, nurse.getNurseLastName());
+        contentValues.put(NURSE_DEPARTMENT, nurse.getNurseDepartment());
+        contentValues.put(NURSE_PASSWORD, nurse.getNursePassword());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_NURSE, null, contentValues);
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        String[] dropQueriesArray = {"DROP TABLE IF EXISTS " + TABLE_DOCTOR + ";",
+                                "DROP TABLE IF EXISTS " + TABLE_NURSE + ";",
+                                "DROP TABLE IF EXISTS " + TABLE_PATIENT + ";",
+                                "DROP TABLE IF EXISTS " + TABLE_TEST + ";"};
+        //Loop through the dropQueries array to drop all the tables
+        for(String dropQuery : dropQueriesArray) {
+            sqLiteDatabase.execSQL(dropQuery);
+        }
+        //Recreate all the tables to complete the upgrade
+        this.onCreate(sqLiteDatabase);
     }
 }

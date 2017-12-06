@@ -6,4 +6,5 @@
     <string name="nurseString">Nurse</string>
     <string name="doctorString">Doctor</string>
     <string name="roleSelectorHeadingText">Log in as:</string>
+    <string name="addNewUserString">Add user</string>
 </resources>
