@@ -5,5 +5,64 @@
     android:id="@+id/relativeLayoutAddUserActivity"
     android:orientation="vertical">
 
+    <RadioGroup
+        android:id="@+id/addUserRadioGroupAddUserActivity"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newNurseString"
+            android:textSize="@dimen/textSize22dp"
+            android:id="@+id/nurseOptionRadioButtonAddUserActivity"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newDoctorString"
+            android:textSize="@dimen/textSize22dp"
+            android:id="@+id/doctorOptionRadioButtonAddUserActivity"/>
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstNameEditTextAddUserActivity"
+        android:layout_below="@+id/addUserRadioGroupAddUserActivity"
+        android:hint="@string/firstNameString"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastNameEditTextAddUserActivity"
+        android:layout_below="@+id/firstNameEditTextAddUserActivity"
+        android:hint="@string/lastNameString"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/departmentEditTextAddUserActivity"
+        android:layout_below="@+id/lastNameEditTextAddUserActivity"
+        android:hint="@string/departmentString"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/passwordEditTextAddUserActivity"
+        android:layout_below="@+id/departmentEditTextAddUserActivity"
+        android:hint="@string/passwordString"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addNewUserButtonAddUserActivity"
+        android:text="@string/addString"
+        android:layout_below="@+id/passwordEditTextAddUserActivity"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

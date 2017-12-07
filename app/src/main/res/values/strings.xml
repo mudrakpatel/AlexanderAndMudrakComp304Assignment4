@@ -7,4 +7,11 @@
     <string name="doctorString">Doctor</string>
     <string name="roleSelectorHeadingText">Log in as:</string>
     <string name="addNewUserString">Add user</string>
+    <string name="firstNameString">First name</string>
+    <string name="lastNameString">Last name</string>
+    <string name="departmentString">Department</string>
+    <string name="passwordString">Password</string>
+    <string name="addString">Add</string>
+    <string name="newNurseString">New Nurse</string>
+    <string name="newDoctorString">New Doctor</string>
 </resources>
