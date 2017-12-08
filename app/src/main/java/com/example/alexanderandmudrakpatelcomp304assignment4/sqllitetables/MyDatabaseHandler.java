@@ -43,8 +43,8 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
     private static final String TEST_TEMPERATURE = "testTemperature";
 
     //Constructor
-    public MyDatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public MyDatabaseHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     //Overriding onCreate and onUpgrade methods
@@ -107,7 +107,7 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         contentValues.put(NURSE_LASTNAME, nurse.getNurseLastName());
         contentValues.put(NURSE_DEPARTMENT, nurse.getNurseDepartment());
         contentValues.put(NURSE_PASSWORD, nurse.getNursePassword());
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NURSE, null, contentValues);
         db.close();
     }

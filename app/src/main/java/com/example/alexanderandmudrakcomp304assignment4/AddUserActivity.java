@@ -1,11 +1,15 @@
 package com.example.alexanderandmudrakcomp304assignment4;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.MyDatabaseHandler;
+import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.Nurse;
 
 public class AddUserActivity extends AppCompatActivity {
     //Required variables
@@ -39,6 +43,11 @@ public class AddUserActivity extends AppCompatActivity {
                 if(nurseOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
                     //Validation successful
                     //Add a new Nurse to the database
+                    Nurse tempNurse = new Nurse(firstNameEditTextAddUserActivity.getText().toString(),
+                                                lastNameEditTextAddUserActivity.getText().toString());
+                    tempNurse.setNursePassword(passwordEditTextAddUserActivity.getText().toString());
+                    tempNurse.setNurseDepartment(departmentEditTextAddUserActivity.getText().toString());
+                    MyDatabaseHandler db = new MyDatabaseHandler(AddUserActivity.this);
 
                 } else if(doctorOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
                     //Validation successful
