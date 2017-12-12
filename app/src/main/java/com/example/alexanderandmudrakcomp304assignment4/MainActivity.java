@@ -1,6 +1,7 @@
 package com.example.alexanderandmudrakcomp304assignment4;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton doctorRoleRadioButtonMainActivity;
     public EditText editTextUserName;
     public EditText editTextPassword;
+    MyDatabaseHandler db;
 
 
     @Override
@@ -44,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     //in terms that no fields are empty
                     //-----------------------------------
                     //Now we need to log in the proper user
-                    //1) Check if the Nurse table is empty or not
-
+                    editTextUserName = (EditText) findViewById(R.id.editTextUserName);
+                    editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+                    db = new MyDatabaseHandler(getApplicationContext());
+                    String selectQuery = "";
 
                 } else if(doctorRoleRadioButtonMainActivity.isChecked() && areBothCredentialsEntered() == false){
                     //If this code block is executed then

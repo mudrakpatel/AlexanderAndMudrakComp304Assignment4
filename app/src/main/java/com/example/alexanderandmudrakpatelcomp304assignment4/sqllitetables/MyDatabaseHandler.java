@@ -112,6 +112,17 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addNewDoctor(Doctor doctor){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DOCTOR_FIRSTNAME, doctor.getDoctorFirstName());
+        contentValues.put(DOCTOR_LASTNAME, doctor.getDoctorLastName());
+        contentValues.put(DOCTOR_DEPARTMENT, doctor.getDoctorDepartment());
+        contentValues.put(DOCTOR_PASSWORD, doctor.getDoctorPassword());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_DOCTOR, null, contentValues);
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String[] dropQueriesArray = {"DROP TABLE IF EXISTS " + TABLE_DOCTOR + ";",

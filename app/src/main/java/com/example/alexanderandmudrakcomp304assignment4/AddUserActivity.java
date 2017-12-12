@@ -7,12 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.Doctor;
 import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.MyDatabaseHandler;
 import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.Nurse;
 
 public class AddUserActivity extends AppCompatActivity {
     //Required variables
+    MyDatabaseHandler db;
     EditText firstNameEditTextAddUserActivity,
             lastNameEditTextAddUserActivity,
             departmentEditTextAddUserActivity,
@@ -41,18 +44,40 @@ public class AddUserActivity extends AppCompatActivity {
                 doctorOptionRadioButtonAddUserActivity = (RadioButton) findViewById(R.id.doctorOptionRadioButtonAddUserActivity);
                 //Validate user input (Basic validation)
                 if(nurseOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
-                    //Validation successful
-                    //Add a new Nurse to the database
-                    Nurse tempNurse = new Nurse(firstNameEditTextAddUserActivity.getText().toString(),
-                                                lastNameEditTextAddUserActivity.getText().toString());
-                    tempNurse.setNursePassword(passwordEditTextAddUserActivity.getText().toString());
-                    tempNurse.setNurseDepartment(departmentEditTextAddUserActivity.getText().toString());
-                    MyDatabaseHandler db = new MyDatabaseHandler(AddUserActivity.this);
+                    try {
+                        //Validation successful
+                        //Add a new Nurse to the database
+                        Nurse tempNurse = new Nurse(firstNameEditTextAddUserActivity.getText().toString(),
+                                                    lastNameEditTextAddUserActivity.getText().toString());
+                        tempNurse.setNursePassword(passwordEditTextAddUserActivity.getText().toString());
+                        tempNurse.setNurseDepartment(departmentEditTextAddUserActivity.getText().toString());
+                        db = new MyDatabaseHandler(AddUserActivity.this);
+                        db.addNewNurse(tempNurse);
+                        Toast.makeText(AddUserActivity.this, "NEW USER ADDED.", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    } catch (Exception e) {
+                        Toast.makeText(AddUserActivity.this, "SOMETHING WENT WRONG!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
 
                 } else if(doctorOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
-                    //Validation successful
-                    //Add a new Doctor to the database
-
+                    try {
+                        //Validation successful
+                        //Add a new Doctor to the database
+                        Doctor tempDoctor = new Doctor(firstNameEditTextAddUserActivity.getText().toString(),
+                                lastNameEditTextAddUserActivity.getText().toString());
+                        tempDoctor.setDoctorPassword(passwordEditTextAddUserActivity.getText().toString());
+                        tempDoctor.setDoctorDepartment(departmentEditTextAddUserActivity.getText().toString());
+                        db = new MyDatabaseHandler(AddUserActivity.this);
+                        db.addNewDoctor(tempDoctor);
+                        Toast.makeText(AddUserActivity.this, "NEW USER ADDED.", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    } catch (Exception e) {
+                        Toast.makeText(AddUserActivity.this, "SOMETHING WENT WRONG!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(AddUserActivity.this, "PLEASE ENTER PROPER VALUES IN ALL FIELDS", Toast.LENGTH_SHORT).show();
                 }
             }
         });
