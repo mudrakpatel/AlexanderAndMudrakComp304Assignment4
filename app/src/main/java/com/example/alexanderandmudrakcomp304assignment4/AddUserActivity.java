@@ -1,5 +1,6 @@
 package com.example.alexanderandmudrakcomp304assignment4;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,8 @@ public class AddUserActivity extends AppCompatActivity {
     EditText firstNameEditTextAddUserActivity,
             lastNameEditTextAddUserActivity,
             departmentEditTextAddUserActivity,
-            passwordEditTextAddUserActivity;
+            passwordEditTextAddUserActivity,
+            showIDEditTextAddUserActivity;
     RadioButton nurseOptionRadioButtonAddUserActivity,
             doctorOptionRadioButtonAddUserActivity;
     Button addNewUserButtonAddUserActivity;
@@ -30,18 +32,19 @@ public class AddUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_user);
         //Set the Action bar text to "Add new user"
         getSupportActionBar().setTitle("Add new user");
+        //Initialize the required variables
+        db = new MyDatabaseHandler(AddUserActivity.this);
+        firstNameEditTextAddUserActivity = (EditText) findViewById(R.id.firstNameEditTextAddUserActivity);
+        lastNameEditTextAddUserActivity = (EditText) findViewById(R.id.lastNameEditTextAddUserActivity);
+        departmentEditTextAddUserActivity = (EditText) findViewById(R.id.lastNameEditTextAddUserActivity);
+        passwordEditTextAddUserActivity = (EditText) findViewById(R.id.passwordEditTextAddUserActivity);
+        nurseOptionRadioButtonAddUserActivity = (RadioButton) findViewById(R.id.nurseOptionRadioButtonAddUserActivity);
+        doctorOptionRadioButtonAddUserActivity = (RadioButton) findViewById(R.id.doctorOptionRadioButtonAddUserActivity);
         //Add an click event listener on the button
         addNewUserButtonAddUserActivity = (Button) findViewById(R.id.addNewUserButtonAddUserActivity);
         addNewUserButtonAddUserActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Initialize the required variables
-                firstNameEditTextAddUserActivity = (EditText) findViewById(R.id.firstNameEditTextAddUserActivity);
-                lastNameEditTextAddUserActivity = (EditText) findViewById(R.id.lastNameEditTextAddUserActivity);
-                departmentEditTextAddUserActivity = (EditText) findViewById(R.id.lastNameEditTextAddUserActivity);
-                passwordEditTextAddUserActivity = (EditText) findViewById(R.id.passwordEditTextAddUserActivity);
-                nurseOptionRadioButtonAddUserActivity = (RadioButton) findViewById(R.id.nurseOptionRadioButtonAddUserActivity);
-                doctorOptionRadioButtonAddUserActivity = (RadioButton) findViewById(R.id.doctorOptionRadioButtonAddUserActivity);
                 //Validate user input (Basic validation)
                 if(nurseOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
                     try {
@@ -51,13 +54,31 @@ public class AddUserActivity extends AppCompatActivity {
                                                     lastNameEditTextAddUserActivity.getText().toString());
                         tempNurse.setNursePassword(passwordEditTextAddUserActivity.getText().toString());
                         tempNurse.setNurseDepartment(departmentEditTextAddUserActivity.getText().toString());
-                        db = new MyDatabaseHandler(AddUserActivity.this);
                         db.addNewNurse(tempNurse);
+/*                        SQLiteDatabase writableDatabase = db.getWritableDatabase();
+                        String generatedID;
+                        String selectQuery = "SELECT nurseID from NURSE WHERE nurseFirstName = \"" + tempNurse.getNurseFirstName()
+                                             + "\" AND nurseLastName = \"" + tempNurse.getNurseLastName() + "\" AND "
+                                             + "nurseDepartment = \"" + tempNurse.getNurseDepartment()
+                                             + "\" AND nursePassword = \"" + tempNurse.getNursePassword() + "\";";
+                        Cursor cursor = writableDatabase.rawQuery(selectQuery, null);
+                        cursor.moveToFirst();
+                        while (!cursor.isAfterLast()) {
+                            if(Integer.toString(cursor.getInt(cursor.getColumnIndex("nurseID"))) != null){
+                                generatedID = Integer.toString(cursor.getInt(cursor.getColumnIndex("nurseID")));
+                                showIDEditTextAddUserActivity = (EditText) findViewById(R.id.showIDEditTextAddUserActivity);
+                                showIDEditTextAddUserActivity.setText(generatedID);
+                                showIDEditTextAddUserActivity.setKeyListener(null);
+                            }
+                        }*/
+                        showIDEditTextAddUserActivity = (EditText) findViewById(R.id.showIDEditTextAddUserActivity);
+                        showIDEditTextAddUserActivity.setText(""+db.getNurseID(tempNurse));
+                        showIDEditTextAddUserActivity.setKeyListener(null);
                         Toast.makeText(AddUserActivity.this, "NEW USER ADDED.", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        /*onBackPressed();*/
                     } catch (Exception e) {
                         Toast.makeText(AddUserActivity.this, "SOMETHING WENT WRONG!", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
+                        System.out.println("EXCEPTION >>> " + e.getMessage());
                     }
 
                 } else if(doctorOptionRadioButtonAddUserActivity.isChecked() && validateAllEditTexts() == false){
@@ -71,7 +92,7 @@ public class AddUserActivity extends AppCompatActivity {
                         db = new MyDatabaseHandler(AddUserActivity.this);
                         db.addNewDoctor(tempDoctor);
                         Toast.makeText(AddUserActivity.this, "NEW USER ADDED.", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        /*onBackPressed();*/
                     } catch (Exception e) {
                         Toast.makeText(AddUserActivity.this, "SOMETHING WENT WRONG!", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();

@@ -2,10 +2,19 @@ package com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.content.SharedPreferences;
+
+import com.example.alexanderandmudrakcomp304assignment4.MainActivity;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class MyDatabaseHandler extends SQLiteOpenHelper {
 
@@ -112,6 +121,24 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public int getNurseID(Nurse nurse){
+        int idToReturn = 0;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nurseID", nurse.getNurseID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT nurseID from NURSE WHERE nurseFirstName = \"" + nurse.getNurseFirstName()
+                + "\" AND nurseLastName = \"" + nurse.getNurseLastName() + "\" AND "
+                + "nurseDepartment = \"" + nurse.getNurseDepartment()
+                + "\" AND nursePassword = \"" + nurse.getNursePassword() + "\";";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            idToReturn = cursor.getInt(cursor.getColumnIndex("nurseID"));
+        }
+        db.close();
+        return idToReturn;
+    }
+
     public void addNewDoctor(Doctor doctor){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DOCTOR_FIRSTNAME, doctor.getDoctorFirstName());
@@ -121,6 +148,38 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_DOCTOR, null, contentValues);
         db.close();
+    }
+
+    public void loginUser(String userRole){
+        //if user is a nurse,
+        // then run the code to log in a nurse.
+        if(userRole.toLowerCase().equals("nurse")){
+
+        } //if user is a doctor,
+        // then run the code to log in a doctor.
+        else if(userRole.toLowerCase().equals("doctor")){
+
+        }
+    }
+
+    public void loginNurse(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT nurseID, nursePassword FROM Nurse WHERE nurseID = \"" +
+                username + "\"" + " AND nursePassword = \"" + password + "\";";
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        SharedPreferences sharedPreferences =
+        //Check if cursor has nay data
+        //If no data, then Display a Toast message
+        if(cursor.moveToNext()){
+            sharedPreferencesEditor = sharedPreferences.edit();
+            sharedPreferencesEditor.putInt("savedNurseID", cursor.getInt(cursor.getColumnIndex("nurseID")));
+            sharedPreferencesEditor.putInt("savedNursePassword", cursor.getInt(cursor.getColumnIndex("nursePassword")));
+            //Launch the next Activity
+            //startActivity(new Intent(MainActivity.this, MenuActivity.class));
+            Toast.makeText(MainActivity.this, "LOGGED IN", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "ERROR: NO SUCH USER FOUND!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

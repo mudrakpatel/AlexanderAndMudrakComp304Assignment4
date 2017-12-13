@@ -65,4 +65,12 @@
         android:layout_below="@+id/passwordEditTextAddUserActivity"
         android:layout_centerHorizontal="true"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showIDEditTextAddUserActivity"
+        android:layout_below="@+id/addNewUserButtonAddUserActivity"
+        android:hint="@string/autoGenIDHint"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
