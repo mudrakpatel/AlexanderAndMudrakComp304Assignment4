@@ -150,35 +150,51 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void loginUser(String userRole){
-        //if user is a nurse,
-        // then run the code to log in a nurse.
-        if(userRole.toLowerCase().equals("nurse")){
-
-        } //if user is a doctor,
-        // then run the code to log in a doctor.
-        else if(userRole.toLowerCase().equals("doctor")){
-
+    public boolean loginNurse(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT nurseID, nursePassword FROM Nurse WHERE nurseID = \"" +
+                Integer.parseInt(username) + "\"" + " AND nursePassword = \"" + password + "\";";
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        //Check if cursor has nay data
+        if(cursor.getCount() != 0){
+            cursor.moveToNext();
+            int cursorUsername = cursor.getInt(cursor.getColumnIndex("nurseID"));
+            String cursorPassword = cursor.getString(cursor.getColumnIndex("nursePassword"));
+            //now check the values obtained from the cursor
+            if(Integer.toString(cursorUsername).equals(username) && cursorPassword.equals(password)){
+                db.close();
+                return true;
+            } else {
+                db.close();
+                return false;
+            }
+        } else {
+            db.close();
+            return false;
         }
     }
 
-    public void loginNurse(String username, String password){
+    public boolean loginDoctor(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectQuery = "SELECT nurseID, nursePassword FROM Nurse WHERE nurseID = \"" +
-                username + "\"" + " AND nursePassword = \"" + password + "\";";
+        String selectQuery = "SELECT doctorID, doctorPassword FROM Doctor WHERE doctorID = \"" +
+                Integer.parseInt(username) + "\"" + " AND doctorPassword = \"" + password + "\";";
         Cursor cursor = db.rawQuery(selectQuery,null);
-        SharedPreferences sharedPreferences =
         //Check if cursor has nay data
-        //If no data, then Display a Toast message
-        if(cursor.moveToNext()){
-            sharedPreferencesEditor = sharedPreferences.edit();
-            sharedPreferencesEditor.putInt("savedNurseID", cursor.getInt(cursor.getColumnIndex("nurseID")));
-            sharedPreferencesEditor.putInt("savedNursePassword", cursor.getInt(cursor.getColumnIndex("nursePassword")));
-            //Launch the next Activity
-            //startActivity(new Intent(MainActivity.this, MenuActivity.class));
-            Toast.makeText(MainActivity.this, "LOGGED IN", Toast.LENGTH_SHORT).show();
+        if(cursor.getCount() != 0){
+            cursor.moveToNext();
+            int cursorUsername = cursor.getInt(cursor.getColumnIndex("doctorID"));
+            String cursorPassword = cursor.getString(cursor.getColumnIndex("doctorPassword"));
+            //now check the values obtained from the cursor
+            if(Integer.toString(cursorUsername).equals(username) && cursorPassword.equals(password)){
+                db.close();
+                return true;
+            } else {
+                db.close();
+                return false;
+            }
         } else {
-            Toast.makeText(MainActivity.this, "ERROR: NO SUCH USER FOUND!", Toast.LENGTH_SHORT).show();
+            db.close();
+            return false;
         }
     }
 

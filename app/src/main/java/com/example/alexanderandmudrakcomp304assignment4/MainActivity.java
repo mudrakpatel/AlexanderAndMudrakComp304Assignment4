@@ -2,11 +2,6 @@ package com.example.alexanderandmudrakcomp304assignment4;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.Nullable;
-import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,11 +11,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.MyDatabaseHandler;
-import com.example.alexanderandmudrakpatelcomp304assignment4.sqllitetables.Nurse;
-
-import java.io.File;
-import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     //Declare required GUI variables for reference
@@ -31,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText editTextPassword;
     MyDatabaseHandler db;
     public SharedPreferences sharedPreferences;
-    public Editor sharedPreferencesEditor;
+    //public Editor sharedPreferencesEditor; //Just in case
 
 
     @Override
@@ -43,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         db = new MyDatabaseHandler(getApplicationContext());
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        String username = editTextUserName.getText().toString();
-        String password = editTextPassword.getText().toString();
         //Initialize the loginButtonMainActivity Button
         loginButtonMainActivity = (Button) findViewById(R.id.loginButtonMainActivity);
         loginButtonMainActivity.setOnClickListener(new View.OnClickListener() {
@@ -56,43 +44,68 @@ public class MainActivity extends AppCompatActivity {
                         (RadioButton) findViewById(R.id.doctorRoleRadioButtonMainActivity);
 
                 //Check which radioButton is checked
-                if(nurseRoleRadioButtonMainActivity.isChecked() && areBothCredentialsEntered() == false){
+                if(nurseRoleRadioButtonMainActivity.isChecked() && areBothCredentialsEntered() == true){
                     try {
                         //If this code block is executed then
                         //it means that validation successful
                         //in terms that no fields are empty
                         //-----------------------------------
                         //Now we need to log in the proper user
-                        File dbFile = getDatabasePath("HospitalDatabase");
-
-                        /*String selectQuery = "SELECT nurseID, nursePassword FROM Nurse WHERE nurseID = \"" + editTextUserName.getText().toString()
-                                            + "\"" + " AND nursePassword = \"" + editTextPassword.getText().toString() + "\";";*/
-                        /*Cursor cursor = writableDatabase.rawQuery(selectQuery,null);*/
-                        sharedPreferences = getSharedPreferences("loginSharedPreferences", MODE_PRIVATE);
-                        //Check if cursor has nay data
-                        //If no data, then Display a Toast message
-                        if(cursor.moveToNext()){
-                            sharedPreferencesEditor = sharedPreferences.edit();
-                            sharedPreferencesEditor.putInt("savedNurseID", cursor.getInt(cursor.getColumnIndex("nurseID")));
-                            sharedPreferencesEditor.putInt("savedNursePassword", cursor.getInt(cursor.getColumnIndex("nursePassword")));
-                            //Launch the next Activity
-                            //startActivity(new Intent(MainActivity.this, MenuActivity.class));
-                            Toast.makeText(MainActivity.this, "LOGGED IN", Toast.LENGTH_SHORT).show();
+                        //File dbFile = getDatabasePath("HospitalDatabase"); //For debugging
+                        db = new MyDatabaseHandler(MainActivity.this);
+                        if(db.loginNurse(editTextUserName.getText().toString(), editTextPassword.getText().toString()) == true){
+                            //Save the user credentials to the Shared Preferences
+                            sharedPreferences = getSharedPreferences("loginSharedPreferences", MODE_PRIVATE);
+                            sharedPreferences.edit().putString("preferencesUsername", editTextUserName.getText().toString());
+                            sharedPreferences.edit().putString("preferencesPassword", editTextPassword.getText().toString());
+                            //Check if the credentials are saved to SHared Preferences
+                            if(sharedPreferences.edit().commit() == false){
+                                //Display error message
+                                Toast.makeText(MainActivity.this, "ERROR: CREDENTIALS NOT SAVED.\nENTER CREDENTIALS AGAIN.", Toast.LENGTH_SHORT).show();
+                                //Clear the EditTexts
+                                editTextUserName.getText().clear();
+                                editTextPassword.getText().clear();
+                            }
                         } else {
                             Toast.makeText(MainActivity.this, "ERROR: NO SUCH USER FOUND!", Toast.LENGTH_SHORT).show();
+                            //Clear the EditTexts
+                            editTextUserName.getText().clear();
+                            editTextPassword.getText().clear();
                         }
                     } catch (Exception e) {
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-
-
-                } else if(doctorRoleRadioButtonMainActivity.isChecked() && areBothCredentialsEntered() == false){
-                    //If this code block is executed then
-                    //it means that validation successful
-                    //in terms that no fields are empty
-                    //-----------------------------------
-                    //Now we need to log in the proper user
-
+                } else if(doctorRoleRadioButtonMainActivity.isChecked() && areBothCredentialsEntered() == true){
+                    try {
+                        //If this code block is executed then
+                        //it means that validation successful
+                        //in terms that no fields are empty
+                        //-----------------------------------
+                        //Now we need to log in the proper user
+                        //File dbFile = getDatabasePath("HospitalDatabase"); //For debugging
+                        db = new MyDatabaseHandler(MainActivity.this);
+                        if(db.loginDoctor(editTextUserName.getText().toString(), editTextPassword.getText().toString()) == true){
+                            //Save the user credentials to the Shared Preferences
+                            sharedPreferences = getSharedPreferences("loginSharedPreferences", MODE_PRIVATE);
+                            sharedPreferences.edit().putString("preferencesUsername", editTextUserName.getText().toString());
+                            sharedPreferences.edit().putString("preferencesPassword", editTextPassword.getText().toString());
+                            //Check if the credentials are saved to SHared Preferences
+                            if(sharedPreferences.edit().commit() == false){
+                                //Display error message
+                                Toast.makeText(MainActivity.this, "ERROR: CREDENTIALS NOT SAVED.\nENTER CREDENTIALS AGAIN.", Toast.LENGTH_SHORT).show();
+                                //Clear the EditTexts
+                                editTextUserName.getText().clear();
+                                editTextPassword.getText().clear();
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "ERROR: NO SUCH USER FOUND!", Toast.LENGTH_SHORT).show();
+                            //Clear the EditTexts
+                            editTextUserName.getText().clear();
+                            editTextPassword.getText().clear();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else{
                     //If this code block is executed then
                     //it means that validation unsuccessful
@@ -120,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         if(editTextUserName.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty()){
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 }
